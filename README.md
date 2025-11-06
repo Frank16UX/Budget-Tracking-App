@@ -1,36 +1,113 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Budget Tracking App
+
+A modern budget tracking application built with Next.js 14, TypeScript, Tailwind CSS, shadcn/ui, and SQLite. Track your monthly expenses, visualize spending patterns, and stay within your budget with real-time alerts.
+
+## Features
+
+✨ **Key Features:**
+- 📊 **Table View**: Notion-like table interface to view and manage all expenses
+- 📈 **Chart View**: Interactive charts showing expense breakdown by category and type
+- 💰 **Budget Tracking**: Set monthly budget limit ($350) with automatic alerts
+- 🔁 **Recurring Expenses**: Pre-configured recurring expenses (Rent, Internet, College)
+- ➕ **Manual Expenses**: Easy-to-use dialog to add one-time expenses
+- 🚨 **Budget Alerts**: Visual alerts when you exceed your monthly budget
+- 💾 **SQLite Database**: Persistent storage with better-sqlite3
+- 🎨 **Modern UI**: Beautiful interface with Tailwind CSS and shadcn/ui components
+
+## Tech Stack
+
+- **Framework**: Next.js 14 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **UI Components**: shadcn/ui
+- **Database**: SQLite (better-sqlite3)
+- **Charts**: Recharts
+- **Icons**: Lucide React
 
 ## Getting Started
 
-First, run the development server:
+### Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the app.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Initial Setup
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The app comes pre-configured with three recurring expenses:
+- **Rent**: $100 (Housing)
+- **Internet**: $50 (Utilities)
+- **College**: $70 (Education)
 
-## Learn More
+These expenses are automatically seeded in the database on first run.
 
-To learn more about Next.js, take a look at the following resources:
+## Usage
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Adding Expenses
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Click the **"Add Expense"** button
+2. Fill in: Name, Amount, Category, Date
+3. Check "This is a recurring expense" if applicable
+4. Click **"Add Expense"** to save
 
-## Deploy on Vercel
+### Viewing Expenses
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Table View**: Detailed table with delete functionality
+**Chart View**: Bar and pie charts showing spending patterns
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Budget Monitoring
+
+- **Monthly Budget**: $350.00
+- **Total Spent**: Current month's total
+- **Remaining**: Budget remaining (or overage)
+- **Alert**: Red alert banner appears when budget is exceeded
+
+## Project Structure
+
+```
+src/
+├── app/
+│   ├── api/expenses/          # API routes
+│   ├── page.tsx               # Main app page
+│   └── layout.tsx
+├── components/
+│   ├── ui/                    # shadcn/ui components
+│   ├── AddExpenseDialog.tsx   # Add expense modal
+│   ├── ExpenseChart.tsx       # Chart visualizations
+│   └── ExpenseTable.tsx       # Expense table
+└── lib/
+    ├── db.ts                  # Database utilities
+    └── types.ts               # TypeScript types
+```
+
+## Customization
+
+### Change Budget Limit
+
+Edit `src/lib/types.ts`:
+```typescript
+export const MONTHLY_BUDGET_LIMIT = 350; // Change this value
+```
+
+### Modify Recurring Expenses
+
+Edit `src/lib/types.ts`:
+```typescript
+export const RECURRING_EXPENSES = {
+  RENT: { name: 'Rent', amount: 100, category: 'Housing' },
+  // Modify as needed
+};
+```
+
+## Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm start` - Start production server
+- `npm run lint` - Run ESLint
+
+---
+
+Built with Next.js, Tailwind CSS, and shadcn/ui
